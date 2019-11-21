@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Board from './components/Board';
+import ResetBoard from './components/ResetBoard';
 import TitleHeader from './components/TitleHeader';
 
 import boardInitializer from './utils/boardInitializer';
@@ -15,6 +16,7 @@ export default class App extends React.Component {
       clickedSquare: null
     }
     this.boardClickHandler = this.boardClickHandler.bind(this);
+    this.boardResetter = this.boardResetter.bind(this);
   }
 
   boardClickHandler(square) {
@@ -34,11 +36,20 @@ export default class App extends React.Component {
     }
   }
 
+  boardResetter() {
+    this.setState({
+      gameBoard: boardInitializer(),
+      hasClickedPiece: false,
+      clickedSquare: null
+    })
+  }
+
   render() {
     return(
       <div>
         <TitleHeader />
         <Board board={this.state.gameBoard} selector={this.boardClickHandler} />
+        <ResetBoard reset={this.boardResetter}/>
       </div>
     )
   }
