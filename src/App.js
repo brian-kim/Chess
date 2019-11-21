@@ -4,28 +4,41 @@ import Board from './components/Board';
 import TitleHeader from './components/TitleHeader';
 
 import boardInitializer from './utils/boardInitializer';
-import boardUpdater from './utils/boardUpdater';
+import pieceMover from './utils/pieceMover';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      gameBoard: boardInitializer()
+      gameBoard: boardInitializer(),
+      hasClickedPiece: false,
+      clickedSquare: null
     }
     this.boardClickHandler = this.boardClickHandler.bind(this);
   }
 
   boardClickHandler(square) {
-    this.setState({
-      gameBoard: boardUpdater(this.state.gameBoard, square)
-    })
+    if (!this.state.hasClickedPiece && square[2] !== null) {
+      this.setState({
+        hasClickedPiece: true,
+        clickedSquare: square
+      })
+    } else if (this.state.hasClickedPiece) {
+      this.setState({
+        hasClickedPiece: false,
+        clickedSquare: null
+      })
+      this.setState({
+        gameBoard: pieceMover(this.state.gameBoard, this.state.clickedSquare, square)
+      })
+    }
   }
 
   render() {
     return(
       <div>
         <TitleHeader />
-        <Board selector={this.boardClickHandler} />
+        <Board board={this.state.gameBoard} selector={this.boardClickHandler} />
       </div>
     )
   }
