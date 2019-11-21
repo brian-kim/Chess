@@ -5,7 +5,11 @@ import Squares from './Squares';
 const Rows = ({ row, selector }) => {
   return(
     <div style={rowStyle}>{row.map(square => {
-      return <Squares square={square} selector={selector} />
+      return <Squares
+        key={square}
+        square={square}
+        selector={selector}
+      />
     })}
   </div>
   )

@@ -6,7 +6,11 @@ const Board = ({ board, selector }) => {
   return(
     <div style={boardStyle}>{
       board.map(row => {
-        return <Rows row={row} selector={selector} />
+        return <Rows
+          key={row}
+          row={row}
+          selector={selector}
+        />
       })
     }</div>
   )
