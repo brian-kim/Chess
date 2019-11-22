@@ -9,6 +9,7 @@ const Squares = ({ square, selector }) => {
     width: '50px',
     height: '50px',
     fontSize: '35px',
+    fontFamily: 'arial',
     backgroundColor: backgroundColor,
     border: '1px solid black',
     textAlign: 'center'
