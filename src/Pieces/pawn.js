@@ -5,6 +5,7 @@ export default class Pawn {
     const xDif = Math.abs(newX - curX);
     const yDif = newY - curY;
     
+    // white piece logic
     if (curSquarePiece === 'wP') {
       // check if white pawn hasn't been moved yet and moving 2 spaces
       if (xDif === 0 && curY === 6 && yDif === -2) {
@@ -22,20 +23,17 @@ export default class Pawn {
       } else if (xDif === 1 && yDif === -1 && newSquarePiece !== null) {
         return true;
       }
+    // black piece logic
     } else if (curSquarePiece === 'bP') {
-      // check if black pawn hasn't moved yet and moving 2 spaces
       if (xDif === 0 && curY === 1 && yDif === 2) {
-        // check both spaces ahead to see if empty
         for (let i = 1; i < 3; i++) {
           if (gameBoard[curY + i][curX][2] !== null) {
             return false;
           }
         }
         return true;
-      // black pawn can move 1 space forward if empty
       } else if (xDif === 0 && yDif === 1 && newSquarePiece === null) {
         return true;
-      // black pawn can move diagonally forward if not empty
       } else if (xDif === 1 && yDif === 1 && newSquarePiece !== null) {
         return true;
       }
