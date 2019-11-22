@@ -1,4 +1,5 @@
 import Pawn from '../Pieces/Pawn';
+import Rook from '../Pieces/Rook';
 
 const pieceMover = (gameBoard, curSquare, newSquare) => {
   const curX = curSquare[1];
@@ -17,9 +18,15 @@ const pieceMover = (gameBoard, curSquare, newSquare) => {
     } else {
       invalidMoveMessage();
     }
-  } 
   // check movement rooks
-  
+  } if (curSquarePiece === 'wR' || curSquarePiece === 'bR') {
+    if (Rook.checkMove(gameBoard, curX, curY, newX, newY)) {
+      gameBoard[newY][newX][2] = curSquarePiece;
+      gameBoard[curY][curX][2] = null;
+    } else {
+      invalidMoveMessage();
+    }
+  }
   // check movement bishops
   
   // check movement knight
