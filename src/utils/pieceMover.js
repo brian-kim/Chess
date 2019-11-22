@@ -1,3 +1,4 @@
+import Bishop from '../Pieces/Bishop';
 import Pawn from '../Pieces/Pawn';
 import Rook from '../Pieces/Rook';
 
@@ -19,21 +20,35 @@ const pieceMover = (gameBoard, curSquare, newSquare) => {
       invalidMoveMessage();
     }
   // check movement rooks
-  } if (curSquarePiece === 'wR' || curSquarePiece === 'bR') {
+  } else if (curSquarePiece === 'wR' || curSquarePiece === 'bR') {
     if (Rook.checkMove(gameBoard, curX, curY, newX, newY)) {
       gameBoard[newY][newX][2] = curSquarePiece;
       gameBoard[curY][curX][2] = null;
     } else {
       invalidMoveMessage();
     }
-  }
   // check movement bishops
-  
+  } else if (curSquarePiece === 'wB' || curSquarePiece === 'bB') {
+    if (Bishop.checkMove(gameBoard, curX, curY, newX, newY)) {
+      gameBoard[newY][newX][2] = curSquarePiece;
+      gameBoard[curY][curX][2] = null;
+    } else {
+      invalidMoveMessage();
+    }
+  // check movement queens
+  } else if (curSquarePiece === 'wQ' || curSquarePiece === 'bQ') {
+    if (Rook.checkMove(gameBoard, curX, curY, newX, newY) || Bishop.checkMove(gameBoard, curX, curY, newX, newY)) {
+      gameBoard[newY][newX][2] = curSquarePiece;
+      gameBoard[curY][curX][2] = null;
+    } else {
+      invalidMoveMessage();
+    }
+  }
+
   // check movement knight
   
   // check movement kings
   
-  // check movement queens
   return gameBoard
 }
 
