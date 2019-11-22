@@ -1,4 +1,4 @@
-import Pawn from '../Pieces/pawn';
+import Pawn from '../Pieces/Pawn';
 
 const pieceMover = (gameBoard, curSquare, newSquare) => {
   const curX = curSquare[1];
@@ -9,37 +9,24 @@ const pieceMover = (gameBoard, curSquare, newSquare) => {
 
   const invalidMoveMessage = () => alert('Not a valid move');
 
-  switch(curSquarePiece) {
-    case 'wP':
-      if (Pawn.checkMove(gameBoard, curX, curY, newX, newY)) {
-        gameBoard[newY][newX][2] = curSquarePiece;
-        gameBoard[curY][curX][2] = null;
-      } else {
-        invalidMoveMessage();
-      }
-      break;
-    case 'bP':
-      if (Pawn.checkMove(gameBoard, curX, curY, newX, newY)) {
-        gameBoard[newY][newX][2] = curSquarePiece;
-        gameBoard[curY][curX][2] = null;
-      } else {
-        invalidMoveMessage();
-      }
-      break;
-    // check movement rooks
-    
-    // check movement bishops
+  //check movement of pawns
+  if (curSquarePiece === 'wP' || curSquarePiece === 'bP') {
+    if (Pawn.checkMove(gameBoard, curX, curY, newX, newY)) {
+      gameBoard[newY][newX][2] = curSquarePiece;
+      gameBoard[curY][curX][2] = null;
+    } else {
+      invalidMoveMessage();
+    }
+  } 
+  // check movement rooks
   
-    // check movement knight
+  // check movement bishops
   
-    // check movement kings
+  // check movement knight
   
-    // check movement queens
-
-    default:
-      console.log('pieceMover defaulted');
-  }
-
+  // check movement kings
+  
+  // check movement queens
   return gameBoard
 }
 
