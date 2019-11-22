@@ -29,12 +29,11 @@ const boardInitializer = () => {
       }
     // add rest of the empty spaces
     } else if (i < 6) {
-        for (let j = 0; j < 8; j++) {
-          squares[i].push([i, j, null]);
-        }
-    }
-    //add white pawns
-    else if (i < 7) {
+      for (let j = 0; j < 8; j++) {
+        squares[i].push([i, j, null]);
+      }
+    // add white pawns
+    } else if (i < 7) {
       for (let j = 0; j < 8; j++) {
         squares[i].push([i, j, 'wP']);
       } 
