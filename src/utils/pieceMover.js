@@ -13,11 +13,22 @@ const pieceMover = (gameBoard, curSquare, newSquare) => {
 
   const invalidMoveMessage = () => alert('Not a valid move');
 
-  //check movement of pawns
+  // check movement of pawns
   if (curSquarePiece === 'wP' || curSquarePiece === 'bP') {
     if (Pawn.checkMove(gameBoard, curX, curY, newX, newY)) {
-      gameBoard[newY][newX][2] = curSquarePiece;
-      gameBoard[curY][curX][2] = null;
+      // if white pawn makes it to top row, turns into queen
+      if (newY === 0) {
+        gameBoard[newY][newX][2] = 'wQ';
+        gameBoard[curY][curX][2] = null;
+      // if black pawn makes it to bottom row, turns into queen
+      } else if (newY === 7) {
+        gameBoard[newY][newX][2] = 'bQ';
+        gameBoard[curY][curX][2] = null;
+      // otherwise move pawn like normal
+      } else {
+        gameBoard[newY][newX][2] = curSquarePiece;
+        gameBoard[curY][curX][2] = null;
+      }
     } else {
       invalidMoveMessage();
     }
