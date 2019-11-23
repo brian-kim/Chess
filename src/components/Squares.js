@@ -6,10 +6,9 @@ const Squares = ({ square, selector }) => {
   reduced % 2 === 0 ? backgroundColor = 'lightGrey' : backgroundColor = 'grey';
   
   const squareStyle = {
-    width: '50px',
-    height: '50px',
-    fontSize: '50px',
-    fontFamily: 'arial',
+    width: '60px',
+    height: '60px',
+    fontSize: '60px',
     backgroundColor: backgroundColor,
     border: '1px solid black',
     textAlign: 'center'
