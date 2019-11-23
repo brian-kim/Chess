@@ -1,4 +1,5 @@
 import Bishop from '../Pieces/Bishop';
+import Knight from '../Pieces/Knight';
 import Pawn from '../Pieces/Pawn';
 import Rook from '../Pieces/Rook';
 
@@ -43,10 +44,15 @@ const pieceMover = (gameBoard, curSquare, newSquare) => {
     } else {
       invalidMoveMessage();
     }
-  }
-
   // check movement knight
-  
+  } else if (curSquarePiece === 'wN' || curSquarePiece === 'bN') {
+    if (Knight.checkMove(gameBoard, curX, curY, newX, newY)) {
+      gameBoard[newY][newX][2] = curSquarePiece;
+      gameBoard[curY][curX][2] = null;
+    } else {
+      invalidMoveMessage();
+    }
+  }
   // check movement kings
   
   return gameBoard
