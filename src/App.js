@@ -27,11 +27,9 @@ export default class App extends React.Component {
       })
     } else if (this.state.hasClickedPiece) {
       this.setState({
+        gameBoard: pieceMover(this.state.gameBoard, this.state.clickedSquare, square),
         hasClickedPiece: false,
         clickedSquare: null
-      })
-      this.setState({
-        gameBoard: pieceMover(this.state.gameBoard, this.state.clickedSquare, square)
       })
     }
   }
