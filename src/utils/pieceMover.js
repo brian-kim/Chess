@@ -39,6 +39,7 @@ const pieceMover = (gameBoard, curSquare, newSquare) => {
     }
   // check movement queens
   } else if (curSquarePiece === 'wQ' || curSquarePiece === 'bQ') {
+    // queen movement is a combination of rook and bishop movements so if either return true, then the move was valid
     if (Rook.checkMove(gameBoard, curX, curY, newX, newY) || Bishop.checkMove(gameBoard, curX, curY, newX, newY)) {
       gameBoard[newY][newX][2] = curSquarePiece;
       gameBoard[curY][curX][2] = null;
