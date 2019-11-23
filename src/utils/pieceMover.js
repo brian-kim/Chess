@@ -14,15 +14,15 @@ const pieceMover = (gameBoard, curSquare, newSquare) => {
   const invalidMoveMessage = () => alert('Not a valid move');
 
   // check movement of pawns
-  if (curSquarePiece === 'wP' || curSquarePiece === 'bP') {
+  if (curSquarePiece === '♙' || curSquarePiece === '♟') {
     if (Pawn.checkMove(gameBoard, curX, curY, newX, newY)) {
       // if white pawn makes it to top row, turns into queen
       if (newY === 0) {
-        gameBoard[newY][newX][2] = 'wQ';
+        gameBoard[newY][newX][2] = '♕';
         gameBoard[curY][curX][2] = null;
       // if black pawn makes it to bottom row, turns into queen
       } else if (newY === 7) {
-        gameBoard[newY][newX][2] = 'bQ';
+        gameBoard[newY][newX][2] = '♛';
         gameBoard[curY][curX][2] = null;
       // otherwise move pawn like normal
       } else {
@@ -33,7 +33,7 @@ const pieceMover = (gameBoard, curSquare, newSquare) => {
       invalidMoveMessage();
     }
   // check movement rooks
-  } else if (curSquarePiece === 'wR' || curSquarePiece === 'bR') {
+  } else if (curSquarePiece === '♖' || curSquarePiece === '♜') {
     if (Rook.checkMove(gameBoard, curX, curY, newX, newY)) {
       gameBoard[newY][newX][2] = curSquarePiece;
       gameBoard[curY][curX][2] = null;
@@ -41,7 +41,7 @@ const pieceMover = (gameBoard, curSquare, newSquare) => {
       invalidMoveMessage();
     }
   // check movement bishops
-  } else if (curSquarePiece === 'wB' || curSquarePiece === 'bB') {
+  } else if (curSquarePiece === '♗' || curSquarePiece === '♝') {
     if (Bishop.checkMove(gameBoard, curX, curY, newX, newY)) {
       gameBoard[newY][newX][2] = curSquarePiece;
       gameBoard[curY][curX][2] = null;
@@ -49,7 +49,7 @@ const pieceMover = (gameBoard, curSquare, newSquare) => {
       invalidMoveMessage();
     }
   // check movement queens
-  } else if (curSquarePiece === 'wQ' || curSquarePiece === 'bQ') {
+  } else if (curSquarePiece === '♕' || curSquarePiece === '♛') {
     // queen movement is a combination of rook and bishop movements so if either return true, then the move was valid
     if (Rook.checkMove(gameBoard, curX, curY, newX, newY) || Bishop.checkMove(gameBoard, curX, curY, newX, newY)) {
       gameBoard[newY][newX][2] = curSquarePiece;
@@ -58,7 +58,7 @@ const pieceMover = (gameBoard, curSquare, newSquare) => {
       invalidMoveMessage();
     }
   // check movement knight
-  } else if (curSquarePiece === 'wN' || curSquarePiece === 'bN') {
+  } else if (curSquarePiece === '♘' || curSquarePiece === '♞') {
     if (Knight.checkMove(gameBoard, curX, curY, newX, newY)) {
       gameBoard[newY][newX][2] = curSquarePiece;
       gameBoard[curY][curX][2] = null;
@@ -66,7 +66,7 @@ const pieceMover = (gameBoard, curSquare, newSquare) => {
       invalidMoveMessage();
     }
   // check movement kings
-  } else if (curSquarePiece === 'wK' || curSquarePiece === 'bK') {
+  } else if (curSquarePiece === '♔' || curSquarePiece === '♚') {
     if (King.checkMove(gameBoard, curX, curY, newX, newY)) {
       gameBoard[newY][newX][2] = curSquarePiece;
       gameBoard[curY][curX][2] = null;

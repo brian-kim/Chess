@@ -7,25 +7,25 @@ const boardInitializer = () => {
       for (let j = 0; j < 8; j++) {
         // add black rooks
         if (j === 0 || j === 7) {
-          squares[i].push([i, j, 'bR']);
+          squares[i].push([i, j, '♜']);
         // add black bishops
         } else if (j === 1 || j === 6) {
-          squares[i].push([i, j, 'bB']);
+          squares[i].push([i, j, '♝']);
         // add black knights
         } else if (j === 2 || j === 5) {
-          squares[i].push([i, j, 'bN']);
+          squares[i].push([i, j, '♞']);
         // add black queen
         } else if (j === 3) {
-          squares[i].push([i, j, 'bQ']);
+          squares[i].push([i, j, '♛']);
         // add black king
         } else if (j === 4) {
-          squares[i].push([i, j, 'bK']);
+          squares[i].push([i, j, '♚']);
         }
       }
     // add black pawns
     } else if (i < 2) {
       for (let j = 0; j < 8; j++) {
-        squares[i].push([i, j, 'bP']);
+        squares[i].push([i, j, '♟']);
       }
     // add rest of the empty spaces
     } else if (i < 6) {
@@ -35,26 +35,26 @@ const boardInitializer = () => {
     // add white pawns
     } else if (i < 7) {
       for (let j = 0; j < 8; j++) {
-        squares[i].push([i, j, 'wP']);
+        squares[i].push([i, j, '♙']);
       } 
     // add rest of white pieces
     } else if (i < 8) {
       for (let j = 0; j < 8; j++) {
         // add white rooks
         if (j === 0 || j === 7) {
-          squares[i].push([i, j, 'wR']);
+          squares[i].push([i, j, '♖']);
         // add white bishops
         } else if (j === 1 || j === 6) {
-          squares[i].push([i, j, 'wB']);
+          squares[i].push([i, j, '♗']);
         // add white knights
         } else if (j === 2 || j === 5) {
-          squares[i].push([i, j, 'wN']);
+          squares[i].push([i, j, '♘']);
         // add white queen
         } else if (j === 3) {
-          squares[i].push([i, j, 'wQ']);
+          squares[i].push([i, j, '♕']);
         // add white king
         } else if (j === 4) {
-          squares[i].push([i, j, 'wK']);
+          squares[i].push([i, j, '♔']);
         }
       }
     }

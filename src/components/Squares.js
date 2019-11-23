@@ -8,7 +8,7 @@ const Squares = ({ square, selector }) => {
   const squareStyle = {
     width: '50px',
     height: '50px',
-    fontSize: '35px',
+    fontSize: '50px',
     fontFamily: 'arial',
     backgroundColor: backgroundColor,
     border: '1px solid black',
