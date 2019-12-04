@@ -9,7 +9,7 @@ const TitleHeader = () => {
 const titleStyle = {
   textAlign: 'center',
   fontFamily: 'Arial',
-  fontSize: '25px',
+  fontSize: '40px',
   marginBottom: '10px'
 }
 
