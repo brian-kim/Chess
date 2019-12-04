@@ -3,9 +3,11 @@ import React from 'react';
 import Board from './components/Board';
 import ResetBoard from './components/ResetBoard';
 import TitleHeader from './components/TitleHeader';
+import WhosTurn from './components/WhosTurn';
 
 import boardInitializer from './utils/boardInitializer';
 import pieceMover from './utils/pieceMover';
+import isValidMove from './utils/isValidMove';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -13,24 +15,35 @@ export default class App extends React.Component {
     this.state = {
       gameBoard: boardInitializer(),
       hasClickedPiece: false,
-      clickedSquare: null
+      clickedSquare: null,
+      isWhitesTurn: true,
     }
     this.boardClickHandler = this.boardClickHandler.bind(this);
     this.boardResetter = this.boardResetter.bind(this);
   }
 
   boardClickHandler(square) {
-    if (!this.state.hasClickedPiece && square[2] !== null) {
+    const { gameBoard, hasClickedPiece, clickedSquare, isWhitesTurn } = this.state;
+    if (!hasClickedPiece && square[2] !== null) {
       this.setState({
         hasClickedPiece: true,
         clickedSquare: square
       })
-    } else if (this.state.hasClickedPiece) {
-      this.setState({
-        gameBoard: pieceMover(this.state.gameBoard, this.state.clickedSquare, square),
-        hasClickedPiece: false,
-        clickedSquare: null
-      })
+    } else if (hasClickedPiece) {
+      if (isValidMove(gameBoard, clickedSquare, square, isWhitesTurn)) {
+        this.setState({
+          gameBoard: pieceMover(gameBoard, clickedSquare, square),
+          hasClickedPiece: false,
+          clickedSquare: null,
+          isWhitesTurn: !isWhitesTurn,
+        })
+      } else {
+        alert('Not a valid move. Please make another move.');
+        this.setState({
+          hasClickedPiece: false,
+          clickedSquare: null
+        })
+      }
     }
   }
 
@@ -38,15 +51,18 @@ export default class App extends React.Component {
     this.setState({
       gameBoard: boardInitializer(),
       hasClickedPiece: false,
-      clickedSquare: null
+      clickedSquare: null,
+      isWhitesTurn: true
     })
   }
 
   render() {
+    const { gameBoard, isWhitesTurn } = this.state;
     return(
       <div>
         <TitleHeader />
-        <Board board={this.state.gameBoard} selector={this.boardClickHandler} />
+        <WhosTurn turn={isWhitesTurn} />
+        <Board board={gameBoard} selector={this.boardClickHandler} />
         <ResetBoard reset={this.boardResetter}/>
       </div>
     )
